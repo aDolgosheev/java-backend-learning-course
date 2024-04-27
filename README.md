@@ -5,7 +5,7 @@
 #### Список проектов:
 
 1. [Hangman (Виселица)](/hangman/README.md)
-2. Simulation (Симуляция)
+2. [Simulation (Симуляция)](/simulation/README.md)
 3. Currency exchange (Обмен валют)
 4. Tennis match scoreboard (Табло теннисного матча)
 5. Weather (Погода)
