@@ -1,4 +1,7 @@
 package entities;
 
-public class Grass {
+public class Grass extends Entity {
+
+    public Grass() {
+    }
 }
