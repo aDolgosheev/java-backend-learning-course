@@ -1,0 +1,2 @@
+2024-05-04 22:41:39,133 [Worker-7: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-05-04 22:43:19,628 [Worker-29: https://cdn.spring.io/spring-tools/release/TOOLS/sts4/update/4.22.1.RELEASE/e4.30/artifacts.xml.xz] INFO  o.a.h.c.h.i.c.HttpRequestRetryExec - Recoverable I/O exception (org.apache.hc.core5.http.NoHttpResponseException) caught when processing request to {s}->https://cdn.spring.io:443

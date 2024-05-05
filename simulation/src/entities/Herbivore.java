@@ -2,11 +2,12 @@ package entities;
 
 public class Herbivore extends Creature {
 
-    private Grass grass;
+    private static int count;
 
-    public Herbivore(int speed, int hp, Grass grass) {
-        super(speed, hp);
-        this.grass = grass;
+    public Herbivore(int x, int y, int speed, int hp) {
+        super(x, y, speed, hp);
+        count++;
+        this.setName("Herbivore_" + count);
     }
 
     @Override

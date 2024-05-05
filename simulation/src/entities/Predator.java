@@ -2,11 +2,14 @@ package entities;
 
 public class Predator extends Creature {
 
+    private static int count;
+
     private int attackPower;
 
-    public Predator(int speed, int hp, int attackPower) {
-        super(speed, hp);
-        this.attackPower = attackPower;
+    public Predator(int x, int y, int speed, int hp) {
+        super(x, y, speed, hp);
+        count++;
+        this.setName("Predator_" + count);
     }
 
     @Override
