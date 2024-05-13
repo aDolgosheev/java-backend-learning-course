@@ -1,7 +1,12 @@
 package ru.dolgosheev.piece;
 
+import ru.dolgosheev.Board;
 import ru.dolgosheev.Color;
 import ru.dolgosheev.Coordinates;
+import ru.dolgosheev.CoordinatesShift;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public abstract class Piece {
 
@@ -13,4 +18,24 @@ public abstract class Piece {
         this.color = color;
         this.coordinates = coordinates;
     }
+
+    public Set<Coordinates> getAvailableMoveSquares(Board board) {
+        Set<Coordinates> result = new HashSet<>();
+        for (CoordinatesShift shift : getPieceMoves()) {
+            if (coordinates.canShift(shift)) {
+                Coordinates newCoordinates = coordinates.shift(shift);
+
+                if (isSquareAvailableForMove(newCoordinates, board)) {
+                    result.add(newCoordinates);
+                }
+            }
+        }
+        return result;
+    }
+
+    private boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+        return board.isSquareEmpty(coordinates) || board.getPiece(coordinates).color != color;
+    }
+
+    protected abstract Set<CoordinatesShift> getPieceMoves();
 }

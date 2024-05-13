@@ -51,7 +51,8 @@ public class BoardConsoleRenderer {
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates) {
-        return colorizeSprite("\u2003\u2003\u2003", Color.WHITE, isSquareDark(coordinates));
+//        return colorizeSprite("\u2003\u2003\u2003", Color.WHITE, isSquareDark(coordinates));
+        return colorizeSprite("  \u2003", Color.WHITE, isSquareDark(coordinates));
     }
 
     private String selectUnicodeSpriteForPiece(Piece piece) {
@@ -78,7 +79,9 @@ public class BoardConsoleRenderer {
     }
 
     private String getPieceSprite(Piece piece) {
-        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
+//        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
+//        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
+        return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color, isSquareDark(piece.coordinates));
     }
 
     public static boolean isSquareDark(Coordinates coordinates) {

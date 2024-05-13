@@ -9,6 +9,5 @@ public class Main {
         renderer.render(board);
 
         int a = 123;
-        System.out.println("Hi");
     }
 }
