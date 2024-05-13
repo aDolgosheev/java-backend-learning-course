@@ -6,5 +6,5 @@ import java.util.HashMap;
 
 public class Map {
 
-    private HashMap<Creature, int[][]> worldMap;
+    private HashMap<Creature, Coordinates> worldMap;
 }
