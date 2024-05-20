@@ -7,11 +7,11 @@ import java.util.Set;
 
 public class InputCoordinates {
 
-    Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = new Scanner(System.in);
 
-    public Coordinates input() {
+    public static Coordinates input() {
         while (true) {
-            System.out.println("Please, enter coordinates (ex. a1");
+            System.out.println("Please, enter coordinates (ex. a1)");
             String line = scanner.nextLine();
 
             if (line.length() != 2) {
@@ -48,7 +48,7 @@ public class InputCoordinates {
         }
     }
 
-    public Coordinates inputPieceCoordinatesForColor(Color color, Board board) {
+    public static Coordinates inputPieceCoordinatesForColor(Color color, Board board) {
         while (true) {
             System.out.println("Enter coordinates for a piece to move");
             Coordinates coordinates = input();
@@ -69,6 +69,20 @@ public class InputCoordinates {
                 System.out.println("Blocked piece");
                 continue;
             }
+
+            return coordinates;
+        }
+    }
+
+    public static Coordinates inputAvailableSquare(Set<Coordinates> coordinates) {
+        while (true) {
+            System.out.println("Enter your move for selected piece");
+            Coordinates input = input();
+            if (!coordinates.contains(input)) {
+                System.out.println("Non-available square");
+                continue;
+            }
+            return input;
         }
     }
 }
