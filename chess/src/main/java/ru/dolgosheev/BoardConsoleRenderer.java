@@ -14,6 +14,8 @@ public class BoardConsoleRenderer {
 
     public static final String ANSI_BLACK_SQUARE_BACKGROUND = "\u001B[0;100m";
 
+    public static final String ANSI_HIGHLIGHTED_SQUARE_BACKGROUND = "\u001B[45m";
+
     public void render(Board board) {
         for (int rank = 8; rank >= 1; rank--) {
             String line = "";
@@ -30,7 +32,7 @@ public class BoardConsoleRenderer {
         }
     }
 
-    private String colorizeSprite(String sprite, Color pieceColor, boolean isSquareDark) {
+    private String colorizeSprite(String sprite, Color pieceColor, boolean isSquareDark, boolean isHighLighted) {
         // format = background color + font color + text
 
         String result = sprite;
@@ -41,7 +43,9 @@ public class BoardConsoleRenderer {
             result = ANSI_BLACK_PIECE_COLOR + result;
         }
 
-        if (isSquareDark) {
+        if (isHighLighted) {
+            result = ANSI_HIGHLIGHTED_SQUARE_BACKGROUND;
+        } else if (isSquareDark) {
             result = ANSI_BLACK_SQUARE_BACKGROUND + result;
         } else {
             result = ANSI_WHITE_SQUARE_BACKGROUND + result;
@@ -52,7 +56,7 @@ public class BoardConsoleRenderer {
 
     private String getSpriteForEmptySquare(Coordinates coordinates) {
 //        return colorizeSprite("\u2003\u2003\u2003", Color.WHITE, isSquareDark(coordinates));
-        return colorizeSprite("  \u2003", Color.WHITE, isSquareDark(coordinates));
+        return colorizeSprite("  \u2003", Color.WHITE, isSquareDark(coordinates), true);
     }
 
     private String selectUnicodeSpriteForPiece(Piece piece) {
@@ -81,7 +85,7 @@ public class BoardConsoleRenderer {
     private String getPieceSprite(Piece piece) {
 //        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
 //        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
-        return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color, isSquareDark(piece.coordinates));
+        return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color, isSquareDark(piece.coordinates), true);
     }
 
     public static boolean isSquareDark(Coordinates coordinates) {

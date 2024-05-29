@@ -1,11 +1,11 @@
-package ru.dolgosheev.piece;
+package ru.dolgosheev;
 
-import ru.dolgosheev.Board;
-import ru.dolgosheev.Color;
-import ru.dolgosheev.Coordinates;
-import ru.dolgosheev.File;
+import ru.dolgosheev.piece.Pawn;
+import ru.dolgosheev.piece.PieceFactory;
 
 public class BoardFactory {
+
+    private PieceFactory pieceFactory = new PieceFactory();
 
     public Board fromFEN(String fen) {
         Board board = new Board();
@@ -26,7 +26,8 @@ public class BoardFactory {
                 } else {
                     File file = File.values()[fileIndex];
                     Coordinates coordinates = new Coordinates(file, rank);
-                    board.setPiece(coordinates, new Pawn(Color.WHITE, coordinates));
+                    board.setPiece(coordinates, pieceFactory.fromFenCharH(fenChar, coordinates));
+                    fileIndex++;
                 }
             }
         }
