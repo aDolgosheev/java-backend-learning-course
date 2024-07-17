@@ -30,10 +30,11 @@ public class BoardConsoleRenderer {
             String line = "";
             for (File file : File.values()) {
                 Coordinates coordinates = new Coordinates(file, rank);
+                boolean isHighlight = availableMoveSquares.contains(coordinates);
                 if (board.isSquareEmpty(coordinates)) {
-                    line += getSpriteForEmptySquare(coordinates);
+                    line += getSpriteForEmptySquare(coordinates, isHighlight);
                 } else {
-                    line += getPieceSprite(board.getPiece(coordinates));
+                    line += getPieceSprite(board.getPiece(coordinates), isHighlight);
                 }
             }
             line += ANSI_RESET;
@@ -57,7 +58,7 @@ public class BoardConsoleRenderer {
         }
 
         if (isHighLighted) {
-            result = ANSI_HIGHLIGHTED_SQUARE_BACKGROUND;
+            result = ANSI_HIGHLIGHTED_SQUARE_BACKGROUND + result;
         } else if (isSquareDark) {
             result = ANSI_BLACK_SQUARE_BACKGROUND + result;
         } else {
@@ -67,9 +68,9 @@ public class BoardConsoleRenderer {
         return result;
     }
 
-    private String getSpriteForEmptySquare(Coordinates coordinates) {
+    private String getSpriteForEmptySquare(Coordinates coordinates, boolean isHighlight) {
 //        return colorizeSprite("\u2003\u2003\u2003", Color.WHITE, isSquareDark(coordinates));
-        return colorizeSprite("  \u2003", Color.WHITE, isSquareDark(coordinates), true);
+        return colorizeSprite("  \u2003", Color.WHITE, isSquareDark(coordinates), isHighlight);
     }
 
     private String selectUnicodeSpriteForPiece(Piece piece) {
@@ -95,8 +96,9 @@ public class BoardConsoleRenderer {
         return "";
     }
 
-    private String getPieceSprite(Piece piece) {
-        return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color, isSquareDark(piece.coordinates), true);
+    private String getPieceSprite(Piece piece, boolean isHighlight) {
+        return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color,
+                isSquareDark(piece.coordinates), isHighlight);
     }
 
     public static boolean isSquareDark(Coordinates coordinates) {

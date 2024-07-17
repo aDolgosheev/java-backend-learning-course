@@ -26,6 +26,7 @@ public class BoardFactory {
                 } else {
                     File file = File.values()[fileIndex];
                     Coordinates coordinates = new Coordinates(file, rank);
+//                    board.setPiece(coordinates, new Pawn(Color.WHITE, coordinates));
                     board.setPiece(coordinates, pieceFactory.fromFenCharH(fenChar, coordinates));
                     fileIndex++;
                 }

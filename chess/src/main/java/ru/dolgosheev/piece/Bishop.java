@@ -1,11 +1,9 @@
 package ru.dolgosheev.piece;
 
-import ru.dolgosheev.Board;
-import ru.dolgosheev.Color;
-import ru.dolgosheev.Coordinates;
-import ru.dolgosheev.CoordinatesShift;
+import ru.dolgosheev.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Bishop extends Piece {
@@ -42,10 +40,19 @@ public class Bishop extends Piece {
 
         if (result) {
 
-            //
+            // 1. get squares between current pos and target pos
+            // 2. check that square is free
 
+            List<Coordinates> coordinatesBetween = BoardUtils.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
+
+            for (Coordinates c : coordinatesBetween) {
+                if (!board.isSquareEmpty(c)) {
+                    return false;
+                }
+            }
+            return true;
+        } else {
+            return false;
         }
-
-        return false;
     }
 }

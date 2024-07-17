@@ -9,14 +9,13 @@ public class Main {
 //        Board board = new Board();
 //        board.setupDefaultPiecesPositions();
 
+//        Board board = new BoardFactory().fromFEN(
+//                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+//        );
         Board board = new BoardFactory().fromFEN(
-                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+                "8/3p2P1/5n2/2N5/3B4/6P1/8/8 w - - 0 1"
         );
         BoardConsoleRenderer boardConsoleRenderer = new BoardConsoleRenderer();
-
-//
-//        BoardConsoleRenderer renderer = new BoardConsoleRenderer();
-//        renderer.render(board);
 //
 //        Piece piece = board.getPiece(new Coordinates(File.B, 1));
 //        Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
