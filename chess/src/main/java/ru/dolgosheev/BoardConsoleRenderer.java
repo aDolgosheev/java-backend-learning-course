@@ -2,6 +2,10 @@ package ru.dolgosheev;
 
 import ru.dolgosheev.piece.Piece;
 
+import java.util.Set;
+
+import static java.util.Collections.emptySet;
+
 public class BoardConsoleRenderer {
 
     public static final String ANSI_RESET = "\u001B[0m";
@@ -16,7 +20,12 @@ public class BoardConsoleRenderer {
 
     public static final String ANSI_HIGHLIGHTED_SQUARE_BACKGROUND = "\u001B[45m";
 
-    public void render(Board board) {
+    public void render(Board board, Piece pieceToMove) {
+        Set<Coordinates> availableMoveSquares = emptySet();
+        if (pieceToMove != null) {
+            availableMoveSquares = pieceToMove.getAvailableMoveSquares(board);
+        }
+
         for (int rank = 8; rank >= 1; rank--) {
             String line = "";
             for (File file : File.values()) {
@@ -30,6 +39,10 @@ public class BoardConsoleRenderer {
             line += ANSI_RESET;
             System.out.println(line);
         }
+    }
+
+    public void render(Board board) {
+        render(board, null);
     }
 
     private String colorizeSprite(String sprite, Color pieceColor, boolean isSquareDark, boolean isHighLighted) {
@@ -83,8 +96,6 @@ public class BoardConsoleRenderer {
     }
 
     private String getPieceSprite(Piece piece) {
-//        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
-//        return colorizeSprite("\u2003" + selectUnicodeSpriteForPiece(piece) + "\u2003", piece.color, isSquareDark(piece.coordinates));
         return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color, isSquareDark(piece.coordinates), true);
     }
 

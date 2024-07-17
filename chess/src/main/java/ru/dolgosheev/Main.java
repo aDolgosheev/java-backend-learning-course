@@ -6,8 +6,14 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board();
-        board.setupDefaultPiecesPositions();
+//        Board board = new Board();
+//        board.setupDefaultPiecesPositions();
+
+        Board board = new BoardFactory().fromFEN(
+                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
+        );
+        BoardConsoleRenderer boardConsoleRenderer = new BoardConsoleRenderer();
+
 //
 //        BoardConsoleRenderer renderer = new BoardConsoleRenderer();
 //        renderer.render(board);
