@@ -13,7 +13,8 @@ public class Main {
 //                "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 //        );
         Board board = new BoardFactory().fromFEN(
-                "8/3p2P1/5n2/2N5/3B4/6P1/8/8 w - - 0 1"
+                //"8/3p2P1/5n2/2N5/3B4/6P1/8/8 w - - 0 1"
+                "r6k/3n1Q2/8/5N2/8/R7/8/B6q w - - 0 1"
         );
         BoardConsoleRenderer boardConsoleRenderer = new BoardConsoleRenderer();
 //

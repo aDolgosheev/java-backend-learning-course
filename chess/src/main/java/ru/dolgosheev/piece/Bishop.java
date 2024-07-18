@@ -43,7 +43,8 @@ public class Bishop extends Piece {
             // 1. get squares between current pos and target pos
             // 2. check that square is free
 
-            List<Coordinates> coordinatesBetween = BoardUtils.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
+            List<Coordinates> coordinatesBetween =
+                    BoardUtils.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
 
             for (Coordinates c : coordinatesBetween) {
                 if (!board.isSquareEmpty(c)) {

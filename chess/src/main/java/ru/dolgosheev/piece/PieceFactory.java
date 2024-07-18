@@ -6,39 +6,26 @@ import ru.dolgosheev.Coordinates;
 public class PieceFactory {
 
     public Piece fromFenCharH(char fenChar, Coordinates coordinates) {
-        switch (fenChar) {
-            case 'p':
-                return new Pawn(Color.BLACK, coordinates);
-            case 'P':
-                return new Pawn(Color.WHITE, coordinates);
+        return switch (fenChar) {
+            case 'p' -> new Pawn(Color.BLACK, coordinates);
+            case 'P' -> new Pawn(Color.WHITE, coordinates);
 
-            case 'r':
-                return new Rook(Color.BLACK, coordinates);
-            case 'R':
-                return new Rook(Color.WHITE, coordinates);
+            case 'r' -> new Rook(Color.BLACK, coordinates);
+            case 'R' -> new Rook(Color.WHITE, coordinates);
 
-            case 'n':
-                return new Knight(Color.BLACK, coordinates);
-            case 'N':
-                return new Knight(Color.WHITE, coordinates);
+            case 'n' -> new Knight(Color.BLACK, coordinates);
+            case 'N' -> new Knight(Color.WHITE, coordinates);
 
-            case 'b':
-                return new Bishop(Color.BLACK, coordinates);
-            case 'B':
-                return new Bishop(Color.WHITE, coordinates);
+            case 'b' -> new Bishop(Color.BLACK, coordinates);
+            case 'B' -> new Bishop(Color.WHITE, coordinates);
 
-            case 'q':
-                return new Queen(Color.BLACK, coordinates);
-            case 'Q':
-                return new Queen(Color.WHITE, coordinates);
+            case 'q' -> new Queen(Color.BLACK, coordinates);
+            case 'Q' -> new Queen(Color.WHITE, coordinates);
 
-            case 'k':
-                return new King(Color.BLACK, coordinates);
-            case 'K':
-                return new King(Color.WHITE, coordinates);
+            case 'k' -> new King(Color.BLACK, coordinates);
+            case 'K' -> new King(Color.WHITE, coordinates);
 
-            default:
-                throw new RuntimeException("Unknown FEN char!");
-        }
+            default -> throw new RuntimeException("Unknown FEN char!");
+        };
     }
 }
