@@ -1,8 +1,8 @@
 package ru.dolgosheev;
 
-import ru.dolgosheev.piece.Piece;
-
-import java.util.Set;
+import ru.dolgosheev.board.Board;
+import ru.dolgosheev.board.BoardConsoleRenderer;
+import ru.dolgosheev.board.Move;
 
 public class Game {
 
@@ -27,18 +27,10 @@ public class Game {
                 System.out.println("Black to move");
             }
 
-            // input
-            Coordinates sourceCoordinates = InputCoordinates.inputPieceCoordinatesForColor(
-                    isWhiteToMove ? Color.WHITE : Color.BLACK, board
-            );
+            Move move = InputCoordinates.inputMove(board, isWhiteToMove ? Color.WHITE : Color.BLACK, renderer);
 
-            Piece piece = board.getPiece(sourceCoordinates);
-            Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
-
-            renderer.render(board, piece);
-            Coordinates targetCoordinates = InputCoordinates.inputAvailableSquare(availableMoveSquares);
             // make move
-            board.movePiece(sourceCoordinates, targetCoordinates);
+            board.makeMove(move);
 
             // pass move
             isWhiteToMove =! isWhiteToMove;

@@ -1,6 +1,7 @@
-package ru.dolgosheev;
+package ru.dolgosheev.board;
 
-import ru.dolgosheev.piece.Pawn;
+import ru.dolgosheev.Coordinates;
+import ru.dolgosheev.File;
 import ru.dolgosheev.piece.PieceFactory;
 
 public class BoardFactory {
@@ -8,7 +9,7 @@ public class BoardFactory {
     private PieceFactory pieceFactory = new PieceFactory();
 
     public Board fromFEN(String fen) {
-        Board board = new Board();
+        Board board = new Board(fen);
         String[] parts = fen.split(" ");
         String piecePositions = parts[0];
         String[] fenRows = piecePositions.split("/");
@@ -33,5 +34,15 @@ public class BoardFactory {
             }
         }
         return board;
+    }
+
+    public Board copy(Board source) {
+        Board clone = fromFEN(source.startingFen);
+
+        for (Move move : source.moves) {
+            clone.makeMove(move);
+        }
+
+        return clone;
     }
 }

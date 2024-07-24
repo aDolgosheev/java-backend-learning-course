@@ -1,5 +1,10 @@
 package ru.dolgosheev;
 
+import ru.dolgosheev.board.Board;
+import ru.dolgosheev.board.BoardConsoleRenderer;
+import ru.dolgosheev.board.BoardFactory;
+import ru.dolgosheev.board.Move;
+import ru.dolgosheev.piece.King;
 import ru.dolgosheev.piece.Piece;
 
 import java.util.Scanner;
@@ -53,7 +58,7 @@ public class InputCoordinates {
             System.out.println("Enter coordinates for a piece to move");
             Coordinates coordinates = input();
 
-            if (board.isSquareEmpty(coordinates)){
+            if (board.isSquareEmpty(coordinates)) {
                 System.out.println("Empty square");
                 continue;
             }
@@ -84,5 +89,36 @@ public class InputCoordinates {
             }
             return input;
         }
+    }
+
+    public static Move inputMove(Board board, Color color, BoardConsoleRenderer renderer) {
+        // input
+        while (true) {
+            Coordinates sourceCoordinates = InputCoordinates.inputPieceCoordinatesForColor(color, board);
+
+            Piece piece = board.getPiece(sourceCoordinates);
+            Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
+
+            renderer.render(board, piece);
+            Coordinates targetCoordinates = InputCoordinates.inputAvailableSquare(availableMoveSquares);
+
+            Move move = new Move(sourceCoordinates, targetCoordinates);
+
+            if (validateIfKingInCheckAfterMove(board, color, move)) {
+                System.out.println("Your king is under attack");
+                continue;
+            }
+                   
+            return move;
+        }
+    }
+
+    private static boolean validateIfKingInCheckAfterMove(Board board, Color color, Move move) {
+        Board copy = (new BoardFactory()).copy(board);
+        copy.makeMove(move);
+
+        Piece king = copy.getPiecesByColor(color).stream().filter(piece -> piece instanceof King).findFirst().get();
+
+        return copy.isSquareAttackedByColor(king.coordinates, color.opposite());
     }
 }

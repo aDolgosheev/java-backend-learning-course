@@ -1,14 +1,27 @@
-package ru.dolgosheev;
+package ru.dolgosheev.board;
 
+import ru.dolgosheev.Color;
+import ru.dolgosheev.Coordinates;
+import ru.dolgosheev.File;
 import ru.dolgosheev.piece.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public class Board {
 
-    HashMap<Coordinates, Piece> pieces = new HashMap<>();
+    public final String startingFen;
+    public HashMap<Coordinates, Piece> pieces = new HashMap<>();
 
-    public void setPiece (Coordinates coordinates, Piece piece) {
+    public List<Move> moves = new ArrayList<>();
+
+    public Board(String startingFen) {
+        this.startingFen = startingFen;
+    }
+
+    public void setPiece(Coordinates coordinates, Piece piece) {
         piece.coordinates = coordinates;
         pieces.put(coordinates, piece);
     }
@@ -17,10 +30,12 @@ public class Board {
         pieces.remove(coordinates);
     }
 
-    public void movePiece(Coordinates from, Coordinates to) {
-        Piece piece = getPiece(from);
-        removePiece(from);
-        setPiece(to, piece);
+    public void makeMove(Move move) {
+        Piece piece = getPiece(move.from);
+        removePiece(move.from);
+        setPiece(move.to, piece);
+
+        moves.add(move);
     }
 
     public boolean isSquareEmpty(Coordinates coordinates) {
@@ -63,5 +78,29 @@ public class Board {
         // set kings
         setPiece(new Coordinates(File.E, 1), new King(Color.WHITE, new Coordinates(File.E, 1)));
         setPiece(new Coordinates(File.E, 8), new King(Color.BLACK, new Coordinates(File.E, 8)));
+    }
+
+    public List<Piece> getPiecesByColor(Color color) {
+        List<Piece> result = new ArrayList<>();
+        for (Piece piece : pieces.values()) {
+            if (piece.color == color) {
+                result.add(piece);
+            }
+        }
+        return result;
+    }
+
+    public boolean isSquareAttackedByColor(Coordinates coordinates, Color color) {
+        List<Piece> pieces = getPiecesByColor(color);
+
+        for (Piece piece : pieces) {
+            Set<Coordinates> attackedSquares = piece.getAttackedSquares(this);
+
+            if (attackedSquares.contains(coordinates)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

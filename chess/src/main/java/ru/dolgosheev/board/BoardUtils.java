@@ -1,4 +1,7 @@
-package ru.dolgosheev;
+package ru.dolgosheev.board;
+
+import ru.dolgosheev.Coordinates;
+import ru.dolgosheev.File;
 
 import java.util.ArrayList;
 import java.util.List;

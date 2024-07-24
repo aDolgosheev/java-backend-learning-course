@@ -1,5 +1,8 @@
-package ru.dolgosheev;
+package ru.dolgosheev.board;
 
+import ru.dolgosheev.Color;
+import ru.dolgosheev.Coordinates;
+import ru.dolgosheev.File;
 import ru.dolgosheev.piece.Piece;
 
 import java.util.Set;

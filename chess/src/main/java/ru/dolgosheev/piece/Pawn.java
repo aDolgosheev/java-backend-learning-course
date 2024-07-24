@@ -1,6 +1,6 @@
 package ru.dolgosheev.piece;
 
-import ru.dolgosheev.Board;
+import ru.dolgosheev.board.Board;
 import ru.dolgosheev.Color;
 import ru.dolgosheev.Coordinates;
 import ru.dolgosheev.CoordinatesShift;
@@ -37,6 +37,20 @@ public class Pawn extends Piece {
             result.add(new CoordinatesShift(-1, -1));
             result.add(new CoordinatesShift(1, -1));
         }
+        return result;
+    }
+
+    @Override
+    protected Set<CoordinatesShift> getPieceAttacks() {
+        Set<CoordinatesShift> result = new HashSet<>();
+        if (color == Color.WHITE) {
+            result.add(new CoordinatesShift(-1, 1));
+            result.add(new CoordinatesShift(1, 1));
+        } else {
+            result.add(new CoordinatesShift(-1, -1));
+            result.add(new CoordinatesShift(1, -1));
+        }
+
         return result;
     }
 

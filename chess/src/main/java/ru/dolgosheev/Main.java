@@ -1,8 +1,8 @@
 package ru.dolgosheev;
 
-import ru.dolgosheev.piece.Piece;
-
-import java.util.Set;
+import ru.dolgosheev.board.Board;
+import ru.dolgosheev.board.BoardConsoleRenderer;
+import ru.dolgosheev.board.BoardFactory;
 
 public class Main {
     public static void main(String[] args) {

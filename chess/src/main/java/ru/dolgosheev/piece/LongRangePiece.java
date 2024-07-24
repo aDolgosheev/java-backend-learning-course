@@ -1,7 +1,7 @@
 package ru.dolgosheev.piece;
 
-import ru.dolgosheev.Board;
-import ru.dolgosheev.BoardUtils;
+import ru.dolgosheev.board.Board;
+import ru.dolgosheev.board.BoardUtils;
 import ru.dolgosheev.Color;
 import ru.dolgosheev.Coordinates;
 
@@ -18,25 +18,29 @@ public abstract class LongRangePiece extends Piece {
         boolean result = super.isSquareAvailableForMove(coordinates, board);
 
         if (result) {
-
-            List<Coordinates> coordinatesBetween;
-
-            if (this.coordinates.file == coordinates.file) {
-                coordinatesBetween = BoardUtils.getVerticalCoordinatesBetween(this.coordinates, coordinates);
-            } else if (this.coordinates.rank.equals(coordinates.rank)) {
-                coordinatesBetween = BoardUtils.getHorizontalCoordinatesBetween(this.coordinates, coordinates);
-            } else {
-                coordinatesBetween = BoardUtils.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
-            }
-
-            for (Coordinates c : coordinatesBetween) {
-                if (!board.isSquareEmpty(c)) {
-                    return false;
-                }
-            }
-            return true;
+            return isSquareAvailableForAttack(coordinates, board);
         } else {
             return false;
         }
+    }
+
+    @Override
+    protected boolean isSquareAvailableForAttack(Coordinates coordinates, Board board) {
+        List<Coordinates> coordinatesBetween;
+
+        if (this.coordinates.file == coordinates.file) {
+            coordinatesBetween = BoardUtils.getVerticalCoordinatesBetween(this.coordinates, coordinates);
+        } else if (this.coordinates.rank.equals(coordinates.rank)) {
+            coordinatesBetween = BoardUtils.getHorizontalCoordinatesBetween(this.coordinates, coordinates);
+        } else {
+            coordinatesBetween = BoardUtils.getDiagonalCoordinatesBetween(this.coordinates, coordinates);
+        }
+
+        for (Coordinates c : coordinatesBetween) {
+            if (!board.isSquareEmpty(c)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -1,5 +1,6 @@
 package ru.dolgosheev.piece;
 
+import ru.dolgosheev.board.Board;
 import ru.dolgosheev.Color;
 import ru.dolgosheev.Coordinates;
 import ru.dolgosheev.CoordinatesShift;
@@ -28,5 +29,16 @@ public class King extends Piece {
         }
 
         return result;
+    }
+
+    @Override
+    protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+        boolean result = super.isSquareAvailableForMove(coordinates, board);
+
+        if (result) {
+            return !board.isSquareAttackedByColor(coordinates, color.opposite());
+        }
+
+        return false;
     }
 }
