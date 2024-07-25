@@ -4,8 +4,10 @@ import ru.dolgosheev.board.Board;
 import ru.dolgosheev.Color;
 import ru.dolgosheev.Coordinates;
 import ru.dolgosheev.CoordinatesShift;
+import ru.dolgosheev.board.BoardUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Pawn extends Piece {
@@ -57,7 +59,14 @@ public class Pawn extends Piece {
     @Override
     protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
         if (this.coordinates.file == coordinates.file) {
-            return board.isSquareEmpty(coordinates);
+            int rankShift = Math.abs(this.coordinates.rank - coordinates.rank);
+
+            if (rankShift == 2) {
+                List<Coordinates> between = BoardUtils.getVerticalCoordinatesBetween(this.coordinates, coordinates);
+                return (board.isSquareEmpty(between.get(0))) && board.isSquareEmpty(coordinates);
+            } else {
+                return board.isSquareEmpty(coordinates);
+            }
         } else {
             if(board.isSquareEmpty(coordinates)) {
                 return false;
