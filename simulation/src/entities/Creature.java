@@ -1,13 +1,15 @@
 package entities;
 
+import logic.Coordinates;
+
 public abstract class Creature extends Entity {
 
     private int speed;
 
     private int hp;
 
-    public Creature(int x, int y, int speed, int hp) {
-        super(x, y);
+    public Creature(Coordinates coordinates, int speed, int hp) {
+        super(coordinates);
         this.speed = speed;
         this.hp = hp;
     }

@@ -2,13 +2,17 @@ package logic;
 
 public class Simulation {
 
-    private Map map;
+    private final Map map;
 
     private int turnCounter;
 
-    private Renderer renderer;
+    private MapRenderer renderer;
 
     private Actions actions;
+
+    public Simulation(Map map) {
+        this.map = map;
+    }
 
     public void nextTurn() {
 

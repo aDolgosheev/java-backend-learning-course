@@ -1,16 +1,16 @@
 package entities;
 
-public class Predator extends Creature {
+import logic.Coordinates;
 
-    private static int count;
+public class Predator extends Creature {
 
     private int attackPower;
 
-    public Predator(int x, int y, int speed, int hp) {
-        super(x, y, speed, hp);
-        count++;
-        this.setName("Predator_" + count);
+    public Predator(Coordinates coordinates, int speed, int hp, int attackPower) {
+        super(coordinates, speed, hp);
+        this.attackPower = attackPower;
     }
+
 
     @Override
     public void makeMove() {

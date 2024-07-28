@@ -1,13 +1,11 @@
 package entities;
 
+import logic.Coordinates;
+
 public class Herbivore extends Creature {
 
-    private static int count;
-
-    public Herbivore(int x, int y, int speed, int hp) {
-        super(x, y, speed, hp);
-        count++;
-        this.setName("Herbivore_" + count);
+    public Herbivore(Coordinates coordinates, int speed, int hp) {
+        super(coordinates, speed, hp);
     }
 
     @Override

@@ -1,7 +1,11 @@
 package entities;
 
+import logic.Coordinates;
+
 public class Rock extends Entity {
-    public Rock(String name, int x, int y) {
-        super(x, y);
+
+
+    public Rock(Coordinates coordinates) {
+        super(coordinates);
     }
 }
