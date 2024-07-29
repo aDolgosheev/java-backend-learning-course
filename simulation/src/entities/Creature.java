@@ -8,8 +8,7 @@ public abstract class Creature extends Entity {
 
     private int hp;
 
-    public Creature(Coordinates coordinates, int speed, int hp) {
-        super(coordinates);
+    public Creature(int speed, int hp) {
         this.speed = speed;
         this.hp = hp;
     }

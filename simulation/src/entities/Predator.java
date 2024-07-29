@@ -6,8 +6,8 @@ public class Predator extends Creature {
 
     private int attackPower;
 
-    public Predator(Coordinates coordinates, int speed, int hp, int attackPower) {
-        super(coordinates, speed, hp);
+    public Predator(int speed, int hp, int attackPower) {
+        super(speed, hp);
         this.attackPower = attackPower;
     }
 

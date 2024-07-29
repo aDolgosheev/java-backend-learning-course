@@ -1,6 +1,7 @@
 package logic;
 
 import entities.Entity;
+import entities.Rock;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,10 +20,19 @@ public class Map {
         this.verticalSize = verticalSize;
     }
 
-    public void setEntity(Coordinates coordinates, Entity entity) {
-        entity.coordinates = coordinates;
+    public void createEntity(Entity entity) {
+        Coordinates coordinates = new Coordinates((int) (Math.random() * 11), (int) (Math.random() * 11));
+        while (!isSquareEmpty(coordinates)) {
+            coordinates = new Coordinates((int) (Math.random() * 11), (int) (Math.random() * 11));
+        }
+        entity.setCoordinates(coordinates);
         entities.put(coordinates, entity);
     }
+
+//    public void setEntity(Coordinates coordinates, Entity entity) {
+//        entity.coordinates = coordinates;
+//        entities.put(coordinates, entity);
+//    }
 
     public Entity getEntity(Coordinates coordinates) {
         return entities.get(coordinates);
@@ -38,7 +48,9 @@ public class Map {
 
     public void setupStartCreaturesPositions() {
         // create Rocks (6 - 9 items)
-
+        for (int i = 0; i < ((int) (Math.random() * 10) + 6); i++) {
+            createEntity(new Rock());
+        }
         // create Trees (8 - 12 items)
 
         // create Grasses (18 - 26 items)
