@@ -10,17 +10,11 @@ public class Predator extends Creature {
         this.attackPower = (int) (Math.random() * 2);
     }
 
-
     @Override
     public void makeMove() {
-
     }
 
     public int getAttackPower() {
         return attackPower;
-    }
-
-    public void setAttackPower(int attackPower) {
-        this.attackPower = attackPower;
     }
 }

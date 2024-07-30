@@ -44,7 +44,7 @@ public class MapRenderer {
 
     private String getSpriteForEmptySquare(Coordinates coordinates) {
 //        return colorizeSprite("\u2003\u2003\u2003", Color.WHITE, isSquareDark(coordinates));
-        return colorizeSprite("  \u2003", isSquareDark(coordinates));
+        return colorizeSprite("  \u2003\u2003", isSquareDark(coordinates));
     }
 
     public static boolean isSquareDark(Coordinates coordinates) {
@@ -63,7 +63,7 @@ public class MapRenderer {
     }
 
     private String getEntitySprite(Entity entity) {
-        return colorizeSprite(" " + selectUnicodeSpriteForEntity(entity) + " ",
+        return colorizeSprite("\u2003" + selectUnicodeSpriteForEntity(entity) + "\u2003",
                 isSquareDark(entity.getCoordinates()));
     }
 }
