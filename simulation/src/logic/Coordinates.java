@@ -15,7 +15,8 @@ public class Coordinates {
     }
 
     public Coordinates shift(CoordinatesShift shift) {
-        return new Coordinates(this.horizontalLine + shift.horizontalLineShift, this.verticalLine + shift.verticalLineShift);
+        return new Coordinates(this.horizontalLine + shift.horizontalLineShift,
+                this.verticalLine + shift.verticalLineShift);
     }
 
     public boolean canShift(CoordinatesShift shift) {
