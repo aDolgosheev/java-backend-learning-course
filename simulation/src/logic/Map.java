@@ -1,7 +1,11 @@
 package logic;
 
 import entities.Entity;
+import entities.Grass;
+import entities.Herbivore;
+import entities.Predator;
 import entities.Rock;
+import entities.Tree;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +22,7 @@ public class Map {
     public Map(Integer horizontalSize, Integer verticalSize) {
         this.horizontalSize = horizontalSize;
         this.verticalSize = verticalSize;
+        setupStartCreaturesPositions();
     }
 
     public void createEntity(Entity entity) {
@@ -28,11 +33,6 @@ public class Map {
         entity.setCoordinates(coordinates);
         entities.put(coordinates, entity);
     }
-
-//    public void setEntity(Coordinates coordinates, Entity entity) {
-//        entity.coordinates = coordinates;
-//        entities.put(coordinates, entity);
-//    }
 
     public Entity getEntity(Coordinates coordinates) {
         return entities.get(coordinates);
@@ -48,16 +48,28 @@ public class Map {
 
     public void setupStartCreaturesPositions() {
         // create Rocks (6 - 9 items)
-        for (int i = 0; i < ((int) (Math.random() * 10) + 6); i++) {
+        for (int i = 0; i < ((int) (Math.random() * 4) + 6); i++) {
             createEntity(new Rock());
         }
+
         // create Trees (8 - 12 items)
+        for (int i = 0; i < ((int) (Math.random() * 5) + 8); i++) {
+            createEntity(new Tree());
+        }
 
         // create Grasses (18 - 26 items)
+        for (int i = 0; i < ((int) (Math.random() * 9) + 18); i++) {
+            createEntity(new Grass());
+        }
 
         // create Herbivores (12 - 16 items)
+        for (int i = 0; i < ((int) (Math.random() * 5) + 12); i++) {
+            createEntity(new Herbivore());
+        }
 
         // create Predators (4 - 8 items)
-
+        for (int i = 0; i < ((int) (Math.random() * 5) + 4); i++) {
+            createEntity(new Predator());
+        }
     }
 }

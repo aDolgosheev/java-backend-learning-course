@@ -4,8 +4,6 @@ import ru.dolgosheev.board.Board;
 import ru.dolgosheev.board.BoardConsoleRenderer;
 import ru.dolgosheev.board.Move;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class Game {

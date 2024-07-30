@@ -8,9 +8,9 @@ public abstract class Creature extends Entity {
 
     private int hp;
 
-    public Creature(int speed, int hp) {
-        this.speed = speed;
-        this.hp = hp;
+    public Creature() {
+        this.speed = (int) (Math.random() * 3);
+        this.hp = (int) (Math.random() * 2);
     }
 
     public int getSpeed() {

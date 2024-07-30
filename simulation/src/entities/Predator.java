@@ -6,9 +6,8 @@ public class Predator extends Creature {
 
     private int attackPower;
 
-    public Predator(int speed, int hp, int attackPower) {
-        super(speed, hp);
-        this.attackPower = attackPower;
+    public Predator() {
+        this.attackPower = (int) (Math.random() * 2);
     }
 
 
