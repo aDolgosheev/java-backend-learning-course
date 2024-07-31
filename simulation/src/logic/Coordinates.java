@@ -5,13 +5,21 @@ import java.util.Objects;
 
 public class Coordinates {
 
-    public final Integer horizontalLine;
+    private final Integer horizontalLine;
 
-    public final Integer verticalLine;
+    private final Integer verticalLine;
 
     public Coordinates(Integer horizontalLine, Integer verticalLine) {
         this.horizontalLine = horizontalLine;
         this.verticalLine = verticalLine;
+    }
+
+    public Integer getHorizontalLine() {
+        return horizontalLine;
+    }
+
+    public Integer getVerticalLine() {
+        return verticalLine;
     }
 
     public Coordinates shift(CoordinatesShift shift) {

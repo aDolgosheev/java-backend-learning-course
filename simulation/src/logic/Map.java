@@ -62,8 +62,8 @@ public class Map {
             createEntity(new Grass());
         }
 
-        // create Herbivores (12 - 16 items)
-        for (int i = 0; i < ((int) (Math.random() * 5) + 12); i++) {
+        // create Herbivores (10 - 14 items)
+        for (int i = 0; i < ((int) (Math.random() * 5) + 10); i++) {
             createEntity(new Herbivore());
         }
 

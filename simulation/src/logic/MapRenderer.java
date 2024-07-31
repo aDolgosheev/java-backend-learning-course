@@ -44,21 +44,27 @@ public class MapRenderer {
 
     private String getSpriteForEmptySquare(Coordinates coordinates) {
 //        return colorizeSprite("\u2003\u2003\u2003", Color.WHITE, isSquareDark(coordinates));
-        return colorizeSprite("  \u2003\u2003", isSquareDark(coordinates));
+        return colorizeSprite("...", isSquareDark(coordinates));
     }
 
     public static boolean isSquareDark(Coordinates coordinates) {
-        return (((coordinates.horizontalLine + 1) + coordinates.verticalLine) % 2) == 0;
+        return (((coordinates.getHorizontalLine() + 1) + coordinates.getVerticalLine()) % 2) == 0;
     }
 
     private String selectUnicodeSpriteForEntity(Entity entity) {
         return switch (entity.getClass().getSimpleName()) {
-            case "Rock" -> "\uD83E\uDEA8";
-            case "Tree" -> "\uD83C\uDF32";
-            case "Grass" -> "\uD83C\uDF3F";
-            case "Herbivore" -> "\uD83D\uDC0E";
-            case "Predator" -> "\uD83D\uDC05";
+            case "Rock" -> "R";
+            case "Tree" -> "T";
+            case "Grass" -> "G";
+            case "Herbivore" -> "H";
+            case "Predator" -> "P";
             default -> "";
+//            case "Rock" -> "\uD83E\uDEA8";
+//            case "Tree" -> "\uD83C\uDF32";
+//            case "Grass" -> "\uD83C\uDF3F";
+//            case "Herbivore" -> "\uD83D\uDC0E";
+//            case "Predator" -> "\uD83D\uDC05";
+//            default -> "";
         };
     }
 
