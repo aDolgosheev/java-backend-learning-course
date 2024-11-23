@@ -1,7 +1,5 @@
 package entities;
 
-import logic.Coordinates;
-
 public class Herbivore extends Creature {
 
     private static int herbivoreCount;

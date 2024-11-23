@@ -59,12 +59,6 @@ public class MapRenderer {
             case "Herbivore" -> "H";
             case "Predator" -> "P";
             default -> "";
-//            case "Rock" -> "\uD83E\uDEA8";
-//            case "Tree" -> "\uD83C\uDF32";
-//            case "Grass" -> "\uD83C\uDF3F";
-//            case "Herbivore" -> "\uD83D\uDC0E";
-//            case "Predator" -> "\uD83D\uDC05";
-//            default -> "";
         };
     }
 
