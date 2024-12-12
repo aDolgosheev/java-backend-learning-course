@@ -1,4 +1,4 @@
-﻿package com.dolgosheev.currencyexchange.entity;
+package com.dolgosheev.currencyexchange.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -6,27 +6,24 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
+import lombok.Data;
 
+
+@Data
 @Entity
-@Getter
 @Table(name = "currencies")
 public class Currency {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @NotEmpty
-    @Column(name = "code")
+    @Column(unique = true, nullable = false)
     private String code;
 
-    @NotEmpty
-    @Column(name = "name")
-    private String name;
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
 
-    @Column(name = "sign")
+    @Column(nullable = false)
     private String sign;
 }

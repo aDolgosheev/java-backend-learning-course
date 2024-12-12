@@ -1,4 +1,34 @@
-﻿package com.dolgosheev.currencyexchange.entity;
+package com.dolgosheev.currencyexchange.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+import java.math.BigDecimal;
+
+@Data
+@Entity
+@Table(name = "exchange_rates")
 public class ExchangeRate {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "base_currency_id", nullable = false)
+    private Currency baseCurrency;
+
+    @ManyToOne
+    @JoinColumn(name = "target_currency_id", nullable = false)
+    private Currency targetCurrency;
+
+    @Column(nullable = false, precision = 10, scale = 6)
+    private BigDecimal rate;
 }
