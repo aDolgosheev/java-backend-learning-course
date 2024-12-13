@@ -6,7 +6,7 @@
 
 1. [Hangman (Виселица)](/hangman/README.md)
 2. [Simulation (Симуляция)](/simulation/README.md)
-3. Currency exchange (Обмен валют)
+3. [Currency exchange (Обмен валют)](/currency-exchange/README.md)
 4. Tennis match scoreboard (Табло теннисного матча)
 5. Weather (Погода)
 6. Cloud file storage (Облачное хранилище файлов)
